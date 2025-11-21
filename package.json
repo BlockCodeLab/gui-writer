@@ -17,13 +17,10 @@
   },
   "dependencies": {
     "@preact/signals": "^2.3.2",
-    "preact": "^10.27.2",
-    "scratchblocks": "^3.6.4",
-    "vditor": "^3.11.2"
+    "preact": "^10.27.2"
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "bun-copy-plugin": "^0.2.1",
     "playground-build": "git+https://github.com/BlockCodeLab/playground-build.git"
   }
 }

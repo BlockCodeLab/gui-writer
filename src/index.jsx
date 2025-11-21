@@ -1,13 +1,9 @@
 import './l10n';
 
-import { svgAsDataUri } from '@blockcode/utils';
-
-import { Text } from '@blockcode/core';
-import { MarkdownEditor } from './components/markdown-editor/markdown-editor';
-
+import { html2canvas } from '@blockcode/utils';
+import { MarkdownEditor, markdownTab } from '@blockcode/write';
+import { SettingsSection } from './components/edit-menu/settings-section';
 import { defaultProject } from './lib/default-project';
-
-import markdownIcon from './icon-markdown.svg';
 
 export default {
   onNew() {
@@ -18,45 +14,61 @@ export default {
     files = files.map((file) => {
       return {
         id: file.id,
-        type: file.type,
         content: file.content,
       };
     });
-    const meta = {};
     return {
-      meta,
       files,
       assets,
     };
   },
 
   // 生成项目缩略图
-  // ! 不要将缩略图生成放在 onSave 中
-  async onThumb() {},
+  async onThumb() {
+    const mode = window.currentVditor.getCurrentMode();
+    const content = window.currentVditor.vditor[mode].element;
+    const canvas = await html2canvas(content);
+    return canvas?.toDataURL();
+  },
 
   // 撤销操作
-  onUndo(e) {},
+  onUndo(e) {
+    if (e instanceof MouseEvent) {
+      const { vditor } = window.currentVditor;
+      vditor.undo.undo(vditor);
+    }
+  },
 
   // 重做操作
-  onRedo(e) {},
+  onRedo(e) {
+    if (e instanceof MouseEvent) {
+      const { vditor } = window.currentVditor;
+      vditor.undo.redo(vditor);
+    }
+  },
 
   // 允许撤销操作的检测
-  onEnableUndo() {},
+  onEnableUndo() {
+    const disabled = document.querySelector('[data-type="undo"].vditor-menu--disabled');
+    return window.currentVditor && !disabled;
+  },
 
   // 允许重做操作的检测
-  onEnableRedo() {},
+  onEnableRedo() {
+    const disabled = document.querySelector('[data-type="redo"].vditor-menu--disabled');
+    return window.currentVditor && !disabled;
+  },
 
-  // menuItems: [],
+  menuItems: [
+    {
+      id: 'edit',
+      Menu: SettingsSection,
+    },
+  ],
 
   tabs: [
     {
-      icon: markdownIcon,
-      label: (
-        <Text
-          id="writer.tabs.editor"
-          defaultMessage="Writer"
-        />
-      ),
+      ...markdownTab,
       Content: MarkdownEditor,
     },
   ],

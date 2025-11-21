@@ -1,3 +1,6 @@
 writer.name: Markdown 编辑器
 
-writer.tabs.editor: 写作
+writer.menus.edit.openOutline: 打开大纲
+writer.menus.edit.closeOutline: 关闭大纲
+writer.menus.edit.openAdvanced: 打开专业模式
+writer.menus.edit.closeAdvanced: 关闭专业模式
