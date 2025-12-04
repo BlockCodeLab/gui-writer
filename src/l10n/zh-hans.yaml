@@ -2,5 +2,7 @@ writer.name: Markdown 编辑器
 
 writer.menus.edit.openOutline: 打开大纲
 writer.menus.edit.closeOutline: 关闭大纲
-writer.menus.edit.openAdvanced: 打开专业模式
-writer.menus.edit.closeAdvanced: 关闭专业模式
+writer.menus.edit.openAdvanced: 打开高级模式
+writer.menus.edit.closeAdvanced: 关闭高级模式
+writer.menus.edit.openProfessional: 打开专业模式
+writer.menus.edit.closeProfessional: 关闭专业模式

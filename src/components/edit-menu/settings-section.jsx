@@ -8,7 +8,7 @@ export function SettingsSection({ itemClassName }) {
     if (appState.value?.outline == null) {
       setAppState({
         outline: false, // 默认关闭大纲
-        advancedMode: false, // 默认关闭专业模式
+        advancedMode: 'wysiwyg', // 默认普通模式
       });
     }
   }, []);
@@ -18,15 +18,16 @@ export function SettingsSection({ itemClassName }) {
     setAppState({ outline });
   }, []);
 
-  const handleToggleAdvancedMode = useCallback(() => {
-    const advancedMode = !appState.value.advancedMode;
-    if (advancedMode) {
-      document.querySelector('[data-mode="ir"]').dispatchEvent(new CustomEvent('click'));
-    } else {
-      document.querySelector('[data-mode="wysiwyg"]').dispatchEvent(new CustomEvent('click'));
-    }
-    setAppState({ advancedMode });
-  }, []);
+  const switchAdvancedMode = useCallback(
+    (mode) => () => {
+      if (mode === appState.value.advancedMode) {
+        mode = 'wysiwyg';
+      }
+      document.querySelector(`[data-mode="${mode}"]`).dispatchEvent(new CustomEvent('click'));
+      setAppState({ advancedMode: mode });
+    },
+    [],
+  );
 
   return (
     <MenuSection>
@@ -48,9 +49,9 @@ export function SettingsSection({ itemClassName }) {
       </MenuItem>
       <MenuItem
         className={itemClassName}
-        onClick={handleToggleAdvancedMode}
+        onClick={switchAdvancedMode('ir')}
       >
-        {appState.value?.advancedMode !== true ? (
+        {appState.value?.advancedMode !== 'ir' ? (
           <Text
             id="writer.menus.edit.openAdvanced"
             defaultMessage="Turn on Advanced Mode"
@@ -59,6 +60,22 @@ export function SettingsSection({ itemClassName }) {
           <Text
             id="writer.menus.edit.closeAdvanced"
             defaultMessage="Turn off Advanced Mode"
+          />
+        )}
+      </MenuItem>
+      <MenuItem
+        className={itemClassName}
+        onClick={switchAdvancedMode('sv')}
+      >
+        {appState.value?.advancedMode !== 'sv' ? (
+          <Text
+            id="writer.menus.edit.openProfessional"
+            defaultMessage="Turn on Professional Mode"
+          />
+        ) : (
+          <Text
+            id="writer.menus.edit.closeProfessional"
+            defaultMessage="Turn off Professional Mode"
           />
         )}
       </MenuItem>
