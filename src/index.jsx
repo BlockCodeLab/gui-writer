@@ -63,6 +63,11 @@ export default {
     {
       id: 'edit',
       Menu: SettingsSection,
+      disabledCoding: true,
+    },
+    {
+      id: 'view',
+      disabled: true,
     },
   ],
 
