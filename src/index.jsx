@@ -64,6 +64,7 @@ export default {
       id: 'edit',
       Menu: SettingsSection,
       disabledCoding: true,
+      disabledCompactBlock: true,
     },
     {
       id: 'view',
