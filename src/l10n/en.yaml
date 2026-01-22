@@ -1,5 +1,8 @@
 writer.name: Markdown Writer
 
+writer.menus.file.exportMarkdown: Export to Markdown...
+writer.menus.file.exportHTML: Export to HTML...
+
 writer.menus.edit.openOutline: Turn on Outline
 writer.menus.edit.closeOutline: Turn off Outline
 writer.menus.edit.openAdvanced: Turn on Advanced Mode

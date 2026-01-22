@@ -1,5 +1,8 @@
 writer.name: Markdown 編輯器
 
+writer.menus.file.exportMarkdown: 匯出 Markdown 文檔…
+writer.menus.file.exportHTML: 匯出 HTML 頁面…
+
 writer.menus.edit.openOutline: 打開大綱
 writer.menus.edit.closeOutline: 關閉大綱
 writer.menus.edit.openAdvanced: 打開高級模式

@@ -2,6 +2,7 @@ import './l10n';
 
 import { html2canvas } from '@blockcode/utils';
 import { MarkdownEditor, markdownTab } from '@blockcode/write';
+import { ExportsSection } from './components/file-menu/exports-section';
 import { SettingsSection } from './components/edit-menu/settings-section';
 import { defaultProject } from './lib/default-project';
 
@@ -11,10 +12,11 @@ export default {
   },
 
   onSave(files, assets) {
+    const vditor = window.currentVditor;
     files = files.map((file) => {
       return {
         id: file.id,
-        content: file.content,
+        content: vditor.getValue(),
       };
     });
     return {
@@ -60,6 +62,10 @@ export default {
   },
 
   menuItems: [
+    {
+      id: 'file',
+      Menu: ExportsSection,
+    },
     {
       id: 'edit',
       Menu: SettingsSection,
