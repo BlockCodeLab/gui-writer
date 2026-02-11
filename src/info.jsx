@@ -8,7 +8,7 @@ addLocalesMessages({
     'writer.description': 'Markdown writing fast and easy.',
   },
   'zh-Hans': {
-    'writer.name': 'Markdown 编写',
+    'writer.name': 'Markdown 写作',
     'writer.description': '好用、美观的文本编辑器。',
   },
   'zh-Hant': {
@@ -31,7 +31,7 @@ export default {
   description: (
     <Text
       id="writer.description"
-      defaultMessage="Example editor."
+      defaultMessage="Markdown writing fast and easy."
     />
   ),
 };
